@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>DoVVue</title>
+    <link href="src/main.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <h1>DobbleVue</h1>
+    <h5>- ルール -</h5>
+    <div>ルール書く　{{ cardNumber }}</div>
+
+    <div class="card">
+    <h4>場札</h4>
+    <span v-for="markIndex in fieldCard.length">
+        <button>
+            <img v-if="markIndex%2 == 0" :src="getFieldCardMark(markIndex)" class="small"/>
+            <img v-if="markIndex%2 != 0" :src="getFieldCardMark(markIndex)" class="large"/>
+        </button>
+        <br v-if="markIndex%3 == 0">
+    </span>
+    </div>
+
+    <div class="card">
+    <h4>手札</h4>
+    <span v-for="markIndex in myCard.length">
+        <button @click="selectMark(markIndex)">
+            <img v-if="markIndex%2 == 0" :src="getMyCardMark(markIndex)" class="small"/>
+            <img v-if="markIndex%2 != 0" :src="getMyCardMark(markIndex)" class="large"/>
+        </button>
+        <br v-if="markIndex%3 == 0">
+    </span>
+    </div>
+
+    <div style="clear:both;">
+    <h4>経過時間　{{ countUpTimer }}</h4>
+    <button class="button" @click="startGame()">スタート</button>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
